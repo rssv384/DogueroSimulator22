@@ -181,7 +181,7 @@ public class MenuSimulacion extends JPanel {
 		
 		// Propiedades del panel
 		setPreferredSize(new Dimension(1280,720));
-        setLayout(null);
+        	setLayout(null);
 	} // end initValues
 	
 }
