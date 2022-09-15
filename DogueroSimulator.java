@@ -14,7 +14,7 @@ public class DogueroSimulator extends JFrame {
 		JPanel mainPanel = new JPanel(new CardLayout()); // JPanel con CardLayout
 		MenuPrincipal menuPrincipal = new MenuPrincipal();
 		EditarFactores editarFactores = new EditarFactores(mainPanel);
-		MenuSimulacion menuSimulacion = new MenuSimulacion();
+		MenuSimulacion menuSimulacion = new MenuSimulacion(mainPanel);
 		// VistaSimulacion
 		
 		// Agregar paneles al panel principal
