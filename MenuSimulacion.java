@@ -6,6 +6,7 @@ public class MenuSimulacion extends JPanel {
 	
 	//private CardLayout cl;
 	//public JPanel parent;
+	public JButton btnSalir;
 
 	public MenuSimulacion() {
 		initValues();
@@ -48,7 +49,7 @@ public class MenuSimulacion extends JPanel {
 		JButton btnSimular = new JButton("Iniciar Simulación");
 		JButton btnAgregar = new JButton("Agregar");
 		JButton btnEliminar = new JButton("Eliminar");
-		JButton btnSalir = new JButton("←");
+		btnSalir = new JButton("←");
 
 		txtTituloUno.setFont(fuenteSubTitulo);
 		txtTituloDos.setFont(fuenteSubTitulo);

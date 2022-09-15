@@ -3,6 +3,10 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class MenuPrincipal extends JPanel {
+
+	//private CardLayout cl;
+	//public JPanel parent;
+	public JButton btnIrSimular;
 	
 	public MenuPrincipal() {
 		initValues();
@@ -17,7 +21,7 @@ public class MenuPrincipal extends JPanel {
 		JLabel txtTitulo = new JLabel("Doguero Simulator '22",SwingConstants.CENTER);
 		txtTitulo.setFont(fuenteTitulo);
 		
-		JButton btnIrSimular = new JButton("Ir a simulación");
+		btnIrSimular = new JButton("Ir a simulación");
 		btnIrSimular.setFont(fuenteTexto);
 		JButton btnEditarFactores = new JButton("Editar factores");
 		btnEditarFactores.setFont(fuenteTexto);
@@ -34,6 +38,9 @@ public class MenuPrincipal extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				if (e.getSource() == btnIrSimular) {
 					// Ir al panel MenuSimulacion
+					//cl = (CardLayout)(parent.getLayout());
+					//cl.show(parent, "MenuSimulacion");
+
 				} // end btnIrSimular
 				if (e.getSource() == btnEditarFactores) {
 					// Ir al panel EditarFactores
