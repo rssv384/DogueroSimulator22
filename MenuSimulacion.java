@@ -52,7 +52,7 @@ public class MenuSimulacion extends JPanel {
 		JButton btnSimular = new JButton("Iniciar Simulación");
 		JButton btnAgregar = new JButton("Agregar");
 		JButton btnEliminar = new JButton("Eliminar");
-		JButton btnRegresar = new JButton("←");
+		JButton btnRegresar = new JButton("Regresar");
 
 		txtTituloUno.setFont(fuenteSubTitulo);
 		txtTituloDos.setFont(fuenteSubTitulo);
