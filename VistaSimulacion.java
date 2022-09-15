@@ -29,8 +29,8 @@ public class VistaSimulacion extends JPanel {
 		animacion = new Animacion("S I M");
 		animacion.setFont(fuenteTitulo);
 		btnPause = new JButton("Pause");
-        btnRestart = new JButton("Restart");
-        btnStop = new JButton("Stop");
+	        btnRestart = new JButton("Restart");
+		btnStop = new JButton("Stop");
 
 		// Definir propiedades de los elementos
 		animacion.setBounds(240,10,800,400);
@@ -41,21 +41,21 @@ public class VistaSimulacion extends JPanel {
 		ActionListener listener = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (e.getSource() == btnPause) {
-                    animacion.pausarHilo();
-                    btnPause.setEnabled(false);
-                    btnRestart.setEnabled(true);
-                } // end btnPause
-                if (e.getSource() == btnRestart) {
-                    animacion.reanudarHilo();
-                    btnPause.setEnabled(true);
-                    btnRestart.setEnabled(false);
-                } // end btnRestart
-                if (e.getSource() == btnStop) {
-                    animacion.stopHilo();
-                    btnPause.setEnabled(false);
-                    btnRestart.setEnabled(false);
-                    btnStop.setEnabled(false);
-                } // end btnStop
+				    animacion.pausarHilo();
+				    btnPause.setEnabled(false);
+				    btnRestart.setEnabled(true);
+				} // end btnPause
+				if (e.getSource() == btnRestart) {
+				    animacion.reanudarHilo();
+				    btnPause.setEnabled(true);
+				    btnRestart.setEnabled(false);
+				} // end btnRestart
+				if (e.getSource() == btnStop) {
+				    animacion.stopHilo();
+				    btnPause.setEnabled(false);
+				    btnRestart.setEnabled(false);
+				    btnStop.setEnabled(false);
+				} // end btnStop
 			} // end actionPerformed
 		};
 
@@ -72,7 +72,7 @@ public class VistaSimulacion extends JPanel {
 		
 		// Propiedades del panel
 		setPreferredSize(new Dimension(1280,720));
-        setLayout(null);
+		setLayout(null);
 		setVisible(false);
 	} // end initValues
 	
