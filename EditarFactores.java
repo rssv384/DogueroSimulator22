@@ -3,7 +3,6 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class EditarFactores extends JPanel {
-	JPanel parent
 	
 	public EditarFactores() {
 		initValues();
