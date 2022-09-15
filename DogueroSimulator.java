@@ -4,9 +4,6 @@ import javax.swing.*;
 
 public class DogueroSimulator extends JFrame {
 
-	CardLayout cl;
-	public JPanel parent;
-
 	public DogueroSimulator() {
 		initValues();
 	}
@@ -16,31 +13,20 @@ public class DogueroSimulator extends JFrame {
 		// Crear elementos
 		JPanel mainPanel = new JPanel(new CardLayout()); // JPanel con CardLayout
 		MenuPrincipal menuPrincipal = new MenuPrincipal();
-		// EditarFactores
-		// MenuSimulacion
+		EditarFactores editarFactores = new EditarFactores(mainPanel);
 		MenuSimulacion ms1 = new MenuSimulacion();
 		// VistaSimulacion
 		
 		// Agregar paneles al panel principal
 		mainPanel.add(menuPrincipal, "MenuPrincipal");
-		// mainPanel.add(miPanel,"NombrePanel");
 		mainPanel.add(ms1, "MenuSimulacion");
+		mainPanel.add(editarFactores, "EditarFactores");
+		// mainPanel.add(miPanel,"NombrePanel");
 
-		//cambio de ventanas
-		ActionListener listener = new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(e.getSource() == menuPrincipal.btnIrSimular){
-					cl = (CardLayout)(mainPanel.getLayout());
-					cl.show(mainPanel, "MenuSimulacion");
-				}if(e.getSource() == ms1.btnSalir){
-					cl = (CardLayout) mainPanel.getLayout();
-					cl.show(mainPanel, "MenuPrincipal");
-				}
-			}
-		};
-
-		menuPrincipal.btnIrSimular.addActionListener(listener);
-		ms1.btnSalir.addActionListener(listener);
+		// Agregar paneles al panel principal
+		mainPanel.add(menuPrincipal, "MenuPrincipal");
+		mainPanel.add(editarFactores, "EditarFactores");
+		mainPanel.add(menuSimulacion, "MenuSimulacion");
 		
 		// Agregar elementos a la ventana (JFrama)
 		add(mainPanel);
