@@ -135,7 +135,10 @@ public class MenuSimulacion extends JPanel {
 				} // end btnEliminar
 				if (e.getSource() == btnSimular) {
 					// Ir al panel de simulacion (VistaSimulacion)
-					System.out.println("Simulación goes brrrrr");
+					cl.show(parent, "VistaSimulacion");
+					// Iniciar simulación al cambiar de panel
+					VistaSimulacion sim = (VistaSimulacion) parent.getComponent(3);
+					sim.start();
 				} // end btnSimular
 			} // end actionPerformed
 		};
