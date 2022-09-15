@@ -3,12 +3,11 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class MenuPrincipal extends JPanel {
+	public JPanel parent; // Panel parent
+	private CardLayout cl; // LayoutManager del panel parent
 
-	//private CardLayout cl;
-	//public JPanel parent;
-	public JButton btnIrSimular;
-	
-	public MenuPrincipal() {
+	public MenuPrincipal(JPanel parent) {
+		this.parent = parent;
 		initValues();
 	} // end constructor
 	
@@ -17,11 +16,14 @@ public class MenuPrincipal extends JPanel {
 		Font fuenteTitulo = new Font("Courier New", 1, 52);
 		Font fuenteTexto = new Font("Courier New", 1, 24);
 		
+		// Obtener CardLayout del parent
+		cl = (CardLayout) parent.getLayout();
+		
 		// Crear elementos
 		JLabel txtTitulo = new JLabel("Doguero Simulator '22",SwingConstants.CENTER);
 		txtTitulo.setFont(fuenteTitulo);
 		
-		btnIrSimular = new JButton("Ir a simulación");
+		JButton btnIrSimular = new JButton("Ir a simulación");
 		btnIrSimular.setFont(fuenteTexto);
 		JButton btnEditarFactores = new JButton("Editar factores");
 		btnEditarFactores.setFont(fuenteTexto);
@@ -38,12 +40,11 @@ public class MenuPrincipal extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				if (e.getSource() == btnIrSimular) {
 					// Ir al panel MenuSimulacion
-					//cl = (CardLayout)(parent.getLayout());
-					//cl.show(parent, "MenuSimulacion");
-
+					cl.show(parent, "MenuSimulacion");
 				} // end btnIrSimular
 				if (e.getSource() == btnEditarFactores) {
 					// Ir al panel EditarFactores
+					cl.show(parent, "EditarFactores");
 				} // end btnEditarFactores
 				if (e.getSource() == btnSalir) {
 					if (JOptionPane.showConfirmDialog(null,"¿Desea cerrar la aplicación?","Doguero Simulator '22",
