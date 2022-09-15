@@ -3,7 +3,6 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class MenuSimulacion extends JPanel {
-	JPanel parent
 	
 	public MenuSimulacion() {
 		initValues();
