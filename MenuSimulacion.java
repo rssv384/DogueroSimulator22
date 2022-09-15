@@ -4,19 +4,22 @@ import javax.swing.*;
 
 public class MenuSimulacion extends JPanel {
 	
-	//private CardLayout cl;
-	//public JPanel parent;
-	public JButton btnSalir;
-
-	public MenuSimulacion() {
+	public JPanel parent; // Panel parent
+	private CardLayout cl; // LayoutManager del panel parent
+	
+	public MenuSimulacion(JPanel parent) {
+		this.parent = parent;
 		initValues();
 	} // end constructor
-	
+
 	// Método que inicializa los elementos y propiedades de la ventana
 	public void initValues() {
 		Font fuenteTitulo = new Font("Courier New", 1, 52);
 		Font fuenteSubTitulo = new Font("Courier New", 1, 32);
 		Font fuenteTexto = new Font("Courier New", 1, 16);
+		
+		// Obtener CardLayout del parent
+		cl = (CardLayout) parent.getLayout();
 		
 		// Crear elementos
 		JLabel txtTituloUno = new JLabel("Recursos disponibles");
@@ -49,7 +52,7 @@ public class MenuSimulacion extends JPanel {
 		JButton btnSimular = new JButton("Iniciar Simulación");
 		JButton btnAgregar = new JButton("Agregar");
 		JButton btnEliminar = new JButton("Eliminar");
-		btnSalir = new JButton("←");
+		JButton btnRegresar = new JButton("←");
 
 		txtTituloUno.setFont(fuenteSubTitulo);
 		txtTituloDos.setFont(fuenteSubTitulo);
@@ -80,7 +83,7 @@ public class MenuSimulacion extends JPanel {
 		checkIng6.setFont(fuenteTexto);
 
 		// Definir propiedades de los elementos
-		btnSalir.setBounds(1,1,50,20);
+		btnRegresar.setBounds(1,1,50,20);
 
 		txtTituloUno.setBounds(50,0,800,100);
 		sub1.setBounds(90,60,200,100);
@@ -118,19 +121,21 @@ public class MenuSimulacion extends JPanel {
 
 		ActionListener listener = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (e.getSource() == btnSalir) {
+				if (e.getSource() == btnRegresar) {
 					// Regresar al panel anterior (MenuPrincipal)
-					//cl = (CardLayout) parent.getLayout();
-					//cl.show(parent, "MenuPrincipal");
+					cl.show(parent, "MenuPrincipal");
 				} // end btnRegresar
 				if (e.getSource() == btnAgregar) {
 					// Agregar orden
+					System.out.println("Orden agregada!");
 				} // end btnAgregar
 				if (e.getSource() == btnEliminar) {
 					// Eliminar orden
+					System.out.println("Orden eliminada!");
 				} // end btnEliminar
 				if (e.getSource() == btnSimular) {
 					// Ir al panel de simulacion (VistaSimulacion)
+					System.out.println("Simulación goes brrrrr");
 				} // end btnSimular
 			} // end actionPerformed
 		};
@@ -139,10 +144,10 @@ public class MenuSimulacion extends JPanel {
 		btnSimular.addActionListener(listener);
 		btnAgregar.addActionListener(listener);
 		btnEliminar.addActionListener(listener);
-		btnSalir.addActionListener(listener);
+		btnRegresar.addActionListener(listener);
 
 		// Agregar elementos al panel
-		add(btnSalir);
+		add(btnRegresar);
 		add(txtTituloUno);
 		add(sub1);
 		add(ing1);
