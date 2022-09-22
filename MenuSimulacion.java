@@ -52,7 +52,8 @@ public class MenuSimulacion extends JPanel {
 		JButton btnSimular = new JButton("Iniciar Simulación");
 		JButton btnAgregar = new JButton("Agregar");
 		JButton btnEliminar = new JButton("Eliminar");
-		JButton btnRegresar = new JButton("Regresar");
+		JButton btnRegresar = new JButton();
+		btnRegresar.setIcon(new ImageIcon("images/regresar.png"));
 
 		txtTituloUno.setFont(fuenteSubTitulo);
 		txtTituloDos.setFont(fuenteSubTitulo);
@@ -83,7 +84,7 @@ public class MenuSimulacion extends JPanel {
 		checkIng6.setFont(fuenteTexto);
 
 		// Definir propiedades de los elementos
-		btnRegresar.setBounds(1,1,50,20);
+		btnRegresar.setBounds(1,1,50,50);
 
 		txtTituloUno.setBounds(50,0,800,100);
 		sub1.setBounds(90,60,200,100);
