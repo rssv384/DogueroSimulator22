@@ -4,11 +4,16 @@ import javax.swing.*;
 
 public class MenuPrincipal extends JPanel {
 	public JPanel parent; // Panel parent
+	public String[] urlList1 = new String[] {"images/img1.png", "images/img2.png", "images/img3.png", "images/img4.png"};
 	private CardLayout cl; // LayoutManager del panel parent
+	private LogoAnimado  logo;
 
+	int Etiqueta;
 	public MenuPrincipal(JPanel parent) {
 		this.parent = parent;
 		initValues();
+		Thread t1 = new Thread(logo);
+		t1.start();
 	} // end constructor
 	
 	// Método que inicializa los elementos y propiedades de la ventana
@@ -16,12 +21,12 @@ public class MenuPrincipal extends JPanel {
 		Font fuenteTitulo = new Font("Courier New", 1, 52);
 		Font fuenteTexto = new Font("Courier New", 1, 24);
 		
+
 		// Obtener CardLayout del parent
 		cl = (CardLayout) parent.getLayout();
 		
 		// Crear elementos
-		JLabel txtTitulo = new JLabel("Doguero Simulator '22",SwingConstants.CENTER);
-		txtTitulo.setFont(fuenteTitulo);
+		logo = new LogoAnimado(urlList1, 602, 60);
 		
 		JButton btnIrSimular = new JButton("Ir a simulación");
 		btnIrSimular.setFont(fuenteTexto);
@@ -31,7 +36,7 @@ public class MenuPrincipal extends JPanel {
 		btnSalir.setFont(fuenteTexto);
 
 		// Definir propiedades de los elementos
-		txtTitulo.setBounds(240,100,800,100);
+		logo.setBounds(602,10,63,77);
 		btnIrSimular.setBounds(540,250,200,100);
 		btnEditarFactores.setBounds(540,375,200,100);
 		btnSalir.setBounds(540,500,200,100);
@@ -60,7 +65,7 @@ public class MenuPrincipal extends JPanel {
 		btnSalir.addActionListener(listener);
 
 		// Agregar elementos al panel
-		add(txtTitulo);
+		add(logo);
 		add(btnIrSimular);
 		add(btnEditarFactores);
 		add(btnSalir);
@@ -68,6 +73,7 @@ public class MenuPrincipal extends JPanel {
 		// Propiedades del panel
 		setPreferredSize(new Dimension(1280,720));
         setLayout(null);
+		setVisible(true);
 	} // end initValues
 	
 }
