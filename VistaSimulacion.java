@@ -4,8 +4,8 @@ import javax.swing.*;
 
 public class VistaSimulacion extends JPanel {
 	private JButton btnPause, btnRestart, btnStop;
-	private Animacion animacion;
-	static String[] urlList1;
+	private Animacion imgSimulacion;
+	public String[] urlList1 = new String[] {"images/hot-dog.png", "images/hot-dog2.png", "images/hot-dog3.png" };
 	// public JPanel parent; // Panel parent
 
 	public VistaSimulacion() {
@@ -14,7 +14,7 @@ public class VistaSimulacion extends JPanel {
 
 	// Método para iniciar la animación
 	public void start() {
-		Thread t1 = new Thread(animacion);
+		Thread t1 = new Thread(imgSimulacion);
 		t1.start();
 		btnPause.setEnabled(true);
 		btnRestart.setEnabled(false);
@@ -27,38 +27,35 @@ public class VistaSimulacion extends JPanel {
 		Font fuenteTexto = new Font("Courier New", 1, 16);
 
 		// Crear elementos
-		animacion = new Animacion("S I M");
-		animacion.setFont(fuenteTitulo);
-		Animacion img1 = new Animacion("imagen1");
-		btnPause = new JButton("Pause");
-		btnRestart = new JButton("Restart");
-		btnStop = new JButton("Stop");
+		imgSimulacion = new Animacion(urlList1, 60);
+		btnPause = new JButton();
+		btnRestart = new JButton();
+		btnStop = new JButton();
 
-		urlList1 = new String[] {"images/hot-dog.png", "images/hot-dog2.png", "images/hot-dog3.png" };
-		img1.urlList1 = urlList1;
-		img1.y = 20;
+		btnRestart.setIcon(new ImageIcon("images/play.png"));
+		btnPause.setIcon(new ImageIcon("images/pause.png"));
+		btnStop.setIcon(new ImageIcon("images/stop.png"));
 
 		// Definir propiedades de los elementos
-		animacion.setBounds(240, 10, 800, 400);
 		btnPause.setBounds(340, 500, 200, 100);
 		btnRestart.setBounds(540, 500, 200, 100);
 		btnStop.setBounds(740, 500, 200, 100);
-		img1.setBounds(50,60,42,42);
+		imgSimulacion.setBounds(619,60,63,77);
 
 		ActionListener listener = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (e.getSource() == btnPause) {
-					animacion.pausarHilo();
+					imgSimulacion.pausarHilo();
 					btnPause.setEnabled(false);
 					btnRestart.setEnabled(true);
 				} // end btnPause
 				if (e.getSource() == btnRestart) {
-					animacion.reanudarHilo();
+					imgSimulacion.reanudarHilo();
 					btnPause.setEnabled(true);
 					btnRestart.setEnabled(false);
 				} // end btnRestart
 				if (e.getSource() == btnStop) {
-					animacion.stopHilo();
+					imgSimulacion.stopHilo();
 					btnPause.setEnabled(false);
 					btnRestart.setEnabled(false);
 					btnStop.setEnabled(false);
@@ -72,18 +69,17 @@ public class VistaSimulacion extends JPanel {
 		btnStop.addActionListener(listener);
 
 		// Agregar elementos al panel
-		add(animacion);
+		add(imgSimulacion);
 		add(btnPause);
 		add(btnRestart);
 		add(btnStop);
-		//add(img1);
 
 		// Propiedades del panel
 		setPreferredSize(new Dimension(1280, 720));
 		setLayout(null);
 		setVisible(false);
-		Color fondo = new Color(130,130,130);
-		setBackground(fondo);
+		//Color fondo = new Color(130,130,130);
+		//setBackground(fondo);
 	} // end initValues
 
 }
