@@ -36,7 +36,8 @@ public class EditarFactores extends JPanel {
 		JTextField tf2 = new JTextField("",SwingConstants.CENTER);
 		JTextField tf3 = new JTextField("");
 		JTextField tf4 = new JTextField("");
-		JButton btnRegresar = new JButton("Regresar");
+		JButton btnRegresar = new JButton();
+		btnRegresar.setIcon(new ImageIcon("images/regresar.png"));
 		JButton btnGuardar = new JButton("Guardar");
 
 		// Definir propiedades de los elementos
@@ -50,7 +51,7 @@ public class EditarFactores extends JPanel {
 		txtTiempo.setBounds(735,135,200,25);
 		tf3.setBounds(855,190,100,25);
 		tf4.setBounds(855,235,100,25);
-		btnRegresar.setBounds(190,20,100,25);
+		btnRegresar.setBounds(190,20,50,50);
 		btnGuardar.setBounds(590,335,100,25);
 
 		ActionListener listener = new ActionListener() {
