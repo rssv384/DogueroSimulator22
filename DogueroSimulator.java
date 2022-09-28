@@ -4,16 +4,20 @@ import javax.swing.*;
 
 public class DogueroSimulator extends JFrame {
 
+	public Factores factores;
+
 	public DogueroSimulator() {
 		initValues();
-	}
+	} // end constructor
 	
 	// Método que inicializa los elementos y propiedades de la ventana
 	public void initValues() {
+		factores = new Factores();
+
 		// Crear elementos
 		JPanel mainPanel = new JPanel(new CardLayout()); // JPanel con CardLayout
 		MenuPrincipal menuPrincipal = new MenuPrincipal(mainPanel);
-		EditarFactores editarFactores = new EditarFactores(mainPanel);
+		EditarFactores editarFactores = new EditarFactores(mainPanel,factores);
 		MenuSimulacion menuSimulacion = new MenuSimulacion(mainPanel);
 		VistaSimulacion vistaSimulacion = new VistaSimulacion();
 		
@@ -22,7 +26,6 @@ public class DogueroSimulator extends JFrame {
 		mainPanel.add(menuSimulacion, "MenuSimulacion");
 		mainPanel.add(editarFactores, "EditarFactores");
 		mainPanel.add(vistaSimulacion, "VistaSimulacion");
-		// mainPanel.add(miPanel,"NombrePanel");
 		
 		// Agregar elementos a la ventana (JFrama)
 		add(mainPanel);
