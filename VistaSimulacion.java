@@ -3,12 +3,16 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class VistaSimulacion extends JPanel {
+	public JPanel parent; // Panel parent
+	private CardLayout cl; // LayoutManager del panel parent
+	
 	private JButton btnPause, btnRestart, btnStop;
 	private Animacion imgSimulacion;
 	public String[] urlList1 = new String[] {"images/hot-dog.png", "images/hot-dog2.png", "images/hot-dog3.png" };
 	// public JPanel parent; // Panel parent
 
-	public VistaSimulacion() {
+	public VistaSimulacion(JPanel parent) {
+		this.parent = parent;
 		initValues();
 	} // end constructor
 
@@ -25,6 +29,8 @@ public class VistaSimulacion extends JPanel {
 	public void initValues() {
 		Font fuenteTitulo = new Font("Courier New", 1, 52);
 		Font fuenteTexto = new Font("Courier New", 1, 16);
+
+        cl = (CardLayout) parent.getLayout();
 
 		// Crear elementos
 		imgSimulacion = new Animacion(urlList1, 60);
@@ -59,6 +65,8 @@ public class VistaSimulacion extends JPanel {
 					btnPause.setEnabled(false);
 					btnRestart.setEnabled(false);
 					btnStop.setEnabled(false);
+					cl.show(parent, "VistaReporte");
+
 				} // end btnStop
 			} // end actionPerformed
 		};
