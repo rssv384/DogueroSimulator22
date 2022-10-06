@@ -75,7 +75,7 @@ public class EditarFactores extends JPanel {
 
 		JButton btnRegresar = new JButton();
 		btnRegresar.setIcon(new ImageIcon("images/regresar.png"));
-		JButton btnGuardar = new JButton("Guardar y salir");
+		JButton btnGuardar = new JButton("Guardar cambios");
 
 		// Definir propiedades de los elementos
 		txtTitulo.setBounds(240,20,800,100);
@@ -114,7 +114,7 @@ public class EditarFactores extends JPanel {
 				} // end btnRegresar
 				if (e.getSource() == btnGuardar) {
 					guardarCambios();
-					cl.show(parent, "MenuPrincipal");
+					//cl.show(parent, "MenuPrincipal");
 				} // end btnGuardar
 			} // end actionPerformed
 		};
@@ -161,36 +161,43 @@ public class EditarFactores extends JPanel {
 	} // end initValues
 	
 	private void cargarFactores() {
-		tfCantPan.setText(Integer.toString(factores.CantidadIng.get("Pan")));
-		tfCantSalchicha.setText(Integer.toString(factores.CantidadIng.get("Salchicha")));
-		tfCantTocino.setText(Integer.toString(factores.CantidadIng.get("Tocino")));
-		tfCantTomate.setText(Integer.toString(factores.CantidadIng.get("Tomate")));
-		tfCantLechuga.setText(Integer.toString(factores.CantidadIng.get("Lechuga")));
-		tfCantMayonesa.setText(Integer.toString(factores.CantidadIng.get("Mayonesa")));
+		tfCantPan.setText(Integer.toString(factores.getCantPan()));
+		tfCantSalchicha.setText(Integer.toString(factores.getCantSalch()));
+		tfCantTocino.setText(Integer.toString(factores.getCantToc()));
+		tfCantTomate.setText(Double.toString(factores.getCantTom()));
+		tfCantLechuga.setText(Double.toString(factores.getCantLec()));
+		tfCantMayonesa.setText(Double.toString(factores.getCantMayo()));
 
-		tfTiempoPan.setText(Integer.toString(factores.TiempoIng.get("Pan")));
-		tfTiempoSalchicha.setText(Integer.toString(factores.TiempoIng.get("Salchicha")));
-		tfTiempoTocino.setText(Integer.toString(factores.TiempoIng.get("Tocino")));
-		tfTiempoTomate.setText(Integer.toString(factores.TiempoIng.get("Tomate")));
-		tfTiempoLechuga.setText(Integer.toString(factores.TiempoIng.get("Lechuga")));
-		tfTiempoMayonesa.setText(Integer.toString(factores.TiempoIng.get("Mayonesa")));
+		tfTiempoPan.setText(Double.toString(factores.getTiempoPan()));
+		tfTiempoSalchicha.setText(Double.toString(factores.getTiempoSalch()));
+		tfTiempoTocino.setText("0");
+		tfTiempoTomate.setText(Double.toString(factores.getTiempoTom()));
+		tfTiempoLechuga.setText(Double.toString(factores.getTiempoLec()));
+		tfTiempoMayonesa.setText(Double.toString(factores.getTiempoMayo()));
 	}
 
 
 	private void guardarCambios() {
-		factores.CantidadIng.put("Pan",Integer.parseInt(tfCantPan.getText()));
-		factores.CantidadIng.put("Salchicha",Integer.parseInt(tfCantPan.getText()));
-		factores.CantidadIng.put("Tocino",Integer.parseInt(tfCantPan.getText()));
-		factores.CantidadIng.put("Tomate",Integer.parseInt(tfCantPan.getText()));
-		factores.CantidadIng.put("Lechuga",Integer.parseInt(tfCantPan.getText()));
-		factores.CantidadIng.put("Mayonesa",Integer.parseInt(tfCantPan.getText()));
+		try {
+			factores.setCantSalch(Integer.parseInt(tfCantSalchicha.getText()));
+			factores.setCantToc(Integer.parseInt(tfCantTocino.getText()));
+			factores.setCantTom(Double.parseDouble(tfCantTomate.getText()));
+			factores.setCantLec(Double.parseDouble(tfCantLechuga.getText()));
+			factores.setCantMayo(Double.parseDouble(tfCantMayonesa.getText()));
 
-		factores.TiempoIng.put("Pan",Integer.parseInt(tfTiempoPan.getText()));
-		factores.TiempoIng.put("Salchicha",Integer.parseInt(tfTiempoSalchicha.getText()));
-		factores.TiempoIng.put("Tocino",Integer.parseInt(tfTiempoTocino.getText()));
-		factores.TiempoIng.put("Tomate",Integer.parseInt(tfTiempoTomate.getText()));
-		factores.TiempoIng.put("Lechuga",Integer.parseInt(tfTiempoLechuga.getText()));
-		factores.TiempoIng.put("Mayonesa",Integer.parseInt(tfTiempoMayonesa.getText()));
+			factores.setTiempoPan(Double.parseDouble(tfTiempoPan.getText()));
+			factores.setTiempoSalch(Double.parseDouble(tfTiempoSalchicha.getText()));
+			factores.setTiempoTom(Double.parseDouble(tfTiempoTomate.getText()));
+			factores.setTiempoLec(Double.parseDouble(tfTiempoLechuga.getText()));
+			factores.setTiempoMayo(Double.parseDouble(tfTiempoMayonesa.getText()));
+
+			JOptionPane.showMessageDialog(null, "¡Se han guardado los cambios!");
+
+			cargarFactores();
+			
+		} catch(Exception ex) {
+			JOptionPane.showMessageDialog(null, "Uno o más campos recibieron valores inválidos. Intente nuevamente.");
+		}
 	}
 
 }
