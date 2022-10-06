@@ -27,6 +27,9 @@ public class MenuPrincipal extends JPanel {
 		
 		// Crear elementos
 		logo = new LogoAnimado(urlList1, 602, 60);
+
+		JLabel nombreApp = new JLabel("DOGUERO SIMULATOR '22");
+		nombreApp.setFont(fuenteTitulo);
 		
 		JButton btnIrSimular = new JButton("Ir a simulación");
 		btnIrSimular.setFont(fuenteTexto);
@@ -37,9 +40,10 @@ public class MenuPrincipal extends JPanel {
 
 		// Definir propiedades de los elementos
 		logo.setBounds(602,10,63,77);
-		btnIrSimular.setBounds(540,250,200,100);
-		btnEditarFactores.setBounds(540,375,200,100);
-		btnSalir.setBounds(540,500,200,100);
+		nombreApp.setBounds(300,125,680,100);
+		btnIrSimular.setBounds(500,250,280,100);
+		btnEditarFactores.setBounds(500,375,280,100);
+		btnSalir.setBounds(500,500,280,100);
 
 		ActionListener listener = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -66,6 +70,7 @@ public class MenuPrincipal extends JPanel {
 
 		// Agregar elementos al panel
 		add(logo);
+		add(nombreApp);
 		add(btnIrSimular);
 		add(btnEditarFactores);
 		add(btnSalir);
