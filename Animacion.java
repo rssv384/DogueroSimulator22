@@ -47,6 +47,11 @@ public class Animacion extends JLabel implements Runnable {
 				System.out.println("Hubo un error con la simulación!");
 			}
 		} // end for
+
+		// Al terminar de ejecutar la animación, cambiar a la vista del reporte
+		VistaSimulacion vs = (VistaSimulacion) this.getParent();
+		vs.verReporte();
+
 	} // end run
 
 	synchronized void pausarHilo() {
