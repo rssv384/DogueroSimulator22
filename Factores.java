@@ -1,54 +1,63 @@
 import java.util.HashMap;
 
 public class Factores {
-	
-	public HashMap<String,Integer> TiempoPrepPrevia; // Pasos y tiempos de preparación previa
-	public HashMap<String,Integer> CantidadIng; // Ingredientes y su cantidad por hot dog
-	public HashMap<String,Integer> TiempoIng; // Ingredientes y su tiempo para servir al preparar un hot dog 
+	// Factores de preparación previa de ingredientes.
+	private double tiempoPicarTom = 40.0, tiempoPicarLec = 127.0, tiempoEnvToc = 13.0,
+					tiempoCalSar = 120.0, tiempoCalPan = 60.0, tiempoFreir = 70.0;
 
-	public Factores () {
-		this.TiempoPrepPrevia = new HashMap<String,Integer>();
-		this.CantidadIng = new HashMap<String,Integer>();
-		this.TiempoIng = new HashMap<String,Integer>();
+	// Cantidad de cada ingrediente servida en 1 hot dog
+	private int cantPan = 1, cantSalch = 1, cantToc = 1; // Piezas del ingrediente
+	private double cantTom = 14.0, cantLec = 22, cantMayo = 5.0; // Gramos del ingrediente
 
-		// Cargar valores para los HashMap
-		cargarTiempoPrepPrevia();
-		cargarCantidadIng();
-		cargarTiempoIng();
-	} // end constructor
+	// Tiempo (en segs.) en el que se sirven los ingredientes
+	private double tiempoPan = 4.0, tiempoSalch = 4.0, tiempoTom = 4.0, tiempoLec = 4.0, tiempoMayo = 4.0;
 
+	// GETTERS Y SETTERS
+	public void setTiempoPicarTom(double tPicarTom) { this.tiempoPicarTom = tPicarTom; }
+	public double getTiempoPicarTom() { return tiempoPicarTom; }
 
-	// Método para agregar pares (key,value) al HashMap de pasos y
-	// tiempos de la preparación previa
-	private void cargarTiempoPrepPrevia() {
-		TiempoPrepPrevia.put("picar_tomate",40);
-		TiempoPrepPrevia.put("picar_lechuga",127);
-		TiempoPrepPrevia.put("envolver_tocino",13);
-		TiempoPrepPrevia.put("calentar_sarten",120);
-		TiempoPrepPrevia.put("calentar_pan",60);
-		TiempoPrepPrevia.put("freir",70);
-	}
+	public void setTiempoPicarLec(double tPicarLec) { this.tiempoPicarLec = tPicarLec; }
+	public double getTiempoPicarLec() { return tiempoPicarLec; }
 
-	// Método para agregar pares (key,value) al HashMap de ingredientes
-	// y sus cantidades al servir
-	private void cargarCantidadIng() {
-		CantidadIng.put("Pan",1);
-		CantidadIng.put("Salchicha",1);
-		CantidadIng.put("Tocino",1);
-		CantidadIng.put("Tomate",14);
-		CantidadIng.put("Lechuga",22);
-		CantidadIng.put("Mayonesa",5);
-	}
+	public void setTiempoEnvToc(double tEnvToc) { this.tiempoEnvToc = tEnvToc; }
+	public double getTiempoEnvToc() { return tiempoEnvToc; }
 
-	// Método para agregar pares (key,value) al HashMap de ingredientes
-	// y sus tiempos al servir
-	private void cargarTiempoIng() {
-		TiempoIng.put("Pan",4);
-		TiempoIng.put("Salchicha",4);
-		TiempoIng.put("Tocino",0);
-		TiempoIng.put("Tomate",4);
-		TiempoIng.put("Lechuga",4);
-		TiempoIng.put("Mayonesa",4);
-	}
+	public void setTiempoCalSar(double tCalSar) { this.tiempoCalSar = tCalSar; }
+	public double getTiempoCalSar() { return tiempoCalSar; }
 
+	public void setTiempoCalPan(double tCalPan) { this.tiempoCalPan = tCalPan; }
+	public double getTiempoCalPan() { return tiempoCalPan; }
+
+	public void setCantPan(int cPan) { this.cantPan = cPan; }
+	public int getCantPan() { return cantPan; }
+
+	public void setCantSalch(int cSalch) { this.cantSalch = cSalch; }
+	public int getCantSalch() { return cantSalch; }
+
+	public void setCantToc(int cToc) { this.cantToc = cToc; }
+	public int getCantToc() { return cantToc; }
+
+	public void setCantTom(double cTom) { this.cantTom = cTom; }
+	public double getCantTom() { return cantTom; }
+
+	public void setCantLec(double cLec) { this.cantLec = cLec; }
+	public double getCantLec() { return cantLec; }
+
+	public void setCantMayo(double cMayo) { this.cantMayo = cMayo; }
+	public double getCantMayo() { return cantMayo; }
+
+	public void setTiempoPan(double tPan) { this.tiempoPan = tPan; }
+	public double getTiempoPan() { return tiempoPan; }
+
+	public void setTiempoSalch(double tSalch) { this.tiempoSalch = tSalch; }
+	public double getTiempoSalch() { return tiempoSalch; }
+
+	public void setTiempoTom(double tTom) { this.tiempoTom = tTom; }
+	public double getTiempoTom() { return tiempoTom; }
+
+	public void setTiempoLec(double tLec) { this.tiempoLec = tLec; }
+	public double getTiempoLec() { return tiempoLec; }
+
+	public void setTiempoMayo(double tMayo) { this.tiempoMayo = tMayo; }
+	public double getTiempoMayo() { return tiempoMayo; }
 }
