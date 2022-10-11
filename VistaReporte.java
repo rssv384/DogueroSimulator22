@@ -6,19 +6,6 @@ public class VistaReporte extends JPanel {
 	public JPanel parent; // Panel parent
 	private CardLayout cl; // LayoutManager del panel parent
 
-	JTextField tfCantPan;
-	JTextField tfCantSalchicha;
-	JTextField tfCantTocino;
-	JTextField tfCantTomate;
-	JTextField tfCantLechuga;
-	JTextField tfCantMayonesa;
-	JTextField tfResiduoPan;
-	JTextField tfResiduoSalchicha;
-	JTextField tfResiduoTocino;
-	JTextField tfResiduoTomate;
-	JTextField tfResiduoLechuga;
-	JTextField tfResiduoMayonesa;
-
 	public VistaReporte(JPanel parent) {
 		this.parent = parent;
 		initValues();
@@ -58,18 +45,18 @@ public class VistaReporte extends JPanel {
 		JLabel txtMayonesa = new JLabel("Mayonesa",SwingConstants.LEFT);	
 		txtMayonesa.setFont(fuenteTexto);
 
-		tfCantPan = new JTextField();
-		tfCantSalchicha = new JTextField();
-		tfCantTocino = new JTextField();
-		tfCantTomate = new JTextField();
-		tfCantLechuga = new JTextField();
-		tfCantMayonesa = new JTextField();
-		tfResiduoPan = new JTextField();
-		tfResiduoSalchicha = new JTextField();
-		tfResiduoTocino = new JTextField();
-		tfResiduoTomate = new JTextField();
-		tfResiduoLechuga = new JTextField();
-		tfResiduoMayonesa = new JTextField();
+		JLabel txtCantPan = new JLabel();
+		JLabel txtCantSalchicha = new JLabel();
+		JLabel txtCantTocino = new JLabel();
+		JLabel txtCantTomate = new JLabel();
+		JLabel txtCantLechuga = new JLabel();
+		JLabel txtCantMayonesa = new JLabel();
+		JLabel txtResiduoPan = new JLabel();
+		JLabel txtResiduoSalchicha = new JLabel();
+		JLabel txtResiduoTocino = new JLabel();
+		JLabel txtResiduoTomate = new JLabel();
+		JLabel txtResiduoLechuga = new JLabel();
+		JLabel txtResiduoMayonesa = new JLabel();
 
 		JButton btnIrMenuP = new JButton("Ir al Menu Principal");
 
@@ -89,20 +76,20 @@ public class VistaReporte extends JPanel {
 		txtMayonesa.setBounds(300,440,200,25);
 
 		txtCantidad.setBounds(535,155,200,25);
-		tfCantPan.setBounds(590,210,100,25);
-		tfCantSalchicha.setBounds(590,255,100,25);
-		tfCantTocino.setBounds(590,305,100,25);
-		tfCantTomate.setBounds(590,350,100,25);
-		tfCantLechuga.setBounds(590,395,100,25);
-		tfCantMayonesa.setBounds(590,440,100,25);
+		txtCantPan.setBounds(590,210,100,25);
+		txtCantSalchicha.setBounds(590,255,100,25);
+		txtCantTocino.setBounds(590,305,100,25);
+		txtCantTomate.setBounds(590,350,100,25);
+		txtCantLechuga.setBounds(590,395,100,25);
+		txtCantMayonesa.setBounds(590,440,100,25);
 
 		txtResiduo.setBounds(800,155,200,25);
-		tfResiduoPan.setBounds(855,210,100,25);
-		tfResiduoSalchicha.setBounds(855,255,100,25);
-		tfResiduoTocino.setBounds(855,305,100,25);
-		tfResiduoTomate.setBounds(855,350,100,25);
-		tfResiduoLechuga.setBounds(855,395,100,25);
-		tfResiduoMayonesa.setBounds(855,440,100,25);
+		txtResiduoPan.setBounds(855,210,100,25);
+		txtResiduoSalchicha.setBounds(855,255,100,25);
+		txtResiduoTocino.setBounds(855,305,100,25);
+		txtResiduoTomate.setBounds(855,350,100,25);
+		txtResiduoLechuga.setBounds(855,395,100,25);
+		txtResiduoMayonesa.setBounds(855,440,100,25);
 
 		btnIrMenuP.setBounds(550,600,180,25);
 
@@ -128,18 +115,18 @@ public class VistaReporte extends JPanel {
 		add(txtTomate);
 		add(txtLechuga);
 		add(txtMayonesa);
-		add(tfCantPan);
-		add(tfCantSalchicha);
-		add(tfCantTocino);
-		add(tfCantTomate);
-		add(tfCantLechuga);
-		add(tfCantMayonesa);
-		add(tfResiduoPan);
-		add(tfResiduoSalchicha);
-		add(tfResiduoTocino);
-		add(tfResiduoTomate);
-		add(tfResiduoLechuga);
-		add(tfResiduoMayonesa);
+		add(txtCantPan);
+		add(txtCantSalchicha);
+		add(txtCantTocino);
+		add(txtCantTomate);
+		add(txtCantLechuga);
+		add(txtCantMayonesa);
+		add(txtResiduoPan);
+		add(txtResiduoSalchicha);
+		add(txtResiduoTocino);
+		add(txtResiduoTomate);
+		add(txtResiduoLechuga);
+		add(txtResiduoMayonesa);
 		add(btnIrMenuP);
 		add(txtTotal);
 		add(txtCantDogo);
