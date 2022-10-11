@@ -7,12 +7,12 @@ public class DogueroSimulator extends JFrame {
 	public Factores factores;
 
 	public DogueroSimulator() {
+		factores = new Factores();
 		initValues();
 	} // end constructor
 	
 	// Método que inicializa los elementos y propiedades de la ventana
 	public void initValues() {
-		factores = new Factores();
 
 		// Crear elementos
 		JPanel mainPanel = new JPanel(new CardLayout()); // JPanel con CardLayout
