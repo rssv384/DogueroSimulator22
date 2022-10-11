@@ -9,6 +9,7 @@ public class VistaSimulacion extends JPanel {
 	private JButton btnPause, btnRestart, btnStop;
 	private Animacion imgSimulacion;
 	public String[] urlList1 = new String[] {"images/hot-dog.png", "images/hot-dog2.png", "images/hot-dog3.png" };
+	// public JPanel parent; // Panel parent
 
 	public VistaSimulacion(JPanel parent) {
 		this.parent = parent;
@@ -25,7 +26,6 @@ public class VistaSimulacion extends JPanel {
 	}
 
 	public void verReporte() {
-		JOptionPane.showMessageDialog(null, "¡Simulación terminada con éxito!");
 		btnPause.setEnabled(false);
 		btnRestart.setEnabled(false);
 		btnStop.setEnabled(false);
@@ -89,6 +89,8 @@ public class VistaSimulacion extends JPanel {
 		setPreferredSize(new Dimension(1280, 720));
 		setLayout(null);
 		setVisible(false);
+		//Color fondo = new Color(130,130,130);
+		//setBackground(fondo);
 	} // end initValues
 
 }
