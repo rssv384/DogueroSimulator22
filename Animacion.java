@@ -3,34 +3,23 @@ import javax.swing.*;
 
 public class Animacion extends JLabel implements Runnable {
 
-	boolean pausar, reanudar, stop;
+	boolean pausar, reanudar, stop, hayRecursos;
 	public String[] urlList;
 	public ImageIcon img;
-	public int y, max;
+	private String[] listaIngredientes = new String[] {"pan", "salchicha", "tocino", "mayonesa", "tomate", "lechuga"};
+	public Recursos recursos;
+	public Factores factores;
 
-	public Animacion(String [] urlList, int y) {
+	public Animacion(String [] urlList) {
 		this.urlList = urlList;
-		this.y = y;
 	} // end constructor
 
 	public void run() {
-		stop = false;
-		int index = 0;
-		max = urlList.length-1;
+		stop = false; hayRecursos = true;
+		int hotDogsPreparados = 0;
 
-		for (int i = 10; i <= 410; i++) {
-
-			img = new ImageIcon(this.getClass().getResource(urlList[index]));
-			
-			if (index == max) {
-				index = 0;
-			} else {
-				index++;
-			}
-
-			setIcon(img);
-			setBounds(i, y, 42, 42);
-
+		// La simulación correrá mientras se tengan recursos disponibles
+		while (hayRecursos) {
 			try {
 				synchronized (this) {
 					while (pausar) {
@@ -41,10 +30,66 @@ public class Animacion extends JLabel implements Runnable {
 					}
 				} // end sync
 
-				Thread.sleep(50);
-				//setText(Integer.toString(i) + "hot dog");
+				// Iterar la lista de ingredientes y cambiar el icono para representar
+				// que se agregó un nuevo ingrediente
+				for (String ing : listaIngredientes) {
+					// Espera correspondiente al tiempo es que tarda en servirse el ingrediente (Factores)
+					double wait = 0;
+
+					switch(ing) {
+						case "pan":
+							img = new ImageIcon(this.getClass().getResource(urlList[0]));
+							recursos.setPanD(recursos.getPanD() - factores.getCantPan()); // Disminuir recursos disp.
+							recursos.setPanU(recursos.getPanU() + factores.getCantPan()); // Aumentar recursos usados
+							wait = factores.getTiempoPan(); // Obtener tiempo para servir el ingrediente
+							break;
+						case "salchicha":
+							img = new ImageIcon(this.getClass().getResource(urlList[1]));
+							recursos.setSalchichaD(recursos.getSalchichaD() - factores.getCantSalch());
+							recursos.setSalchichaU(recursos.getSalchichaU() + factores.getCantSalch());
+							wait = factores.getTiempoSalch();
+							recursos.setTocinoD(recursos.getTocinoD() - factores.getCantToc());
+							recursos.setTocinoU(recursos.getTocinoU() + factores.getCantToc());
+							break;
+						case "mayonesa":
+							img = new ImageIcon(this.getClass().getResource(urlList[2]));
+							recursos.setMayonesaD(recursos.getMayonesaD() - factores.getCantMayo());
+							recursos.setMayonesaU(recursos.getMayonesaU() + factores.getCantMayo());
+							wait = factores.getTiempoMayo();
+							break;
+						case "tomate":
+							img = new ImageIcon(this.getClass().getResource(urlList[3]));
+							recursos.setTomateD(recursos.getTomateD() - factores.getCantTom());
+							recursos.setTomateU(recursos.getTomateU() + factores.getCantTom());
+							wait = factores.getTiempoTom();
+							break;
+						case "lechuga":
+							img = new ImageIcon(this.getClass().getResource(urlList[4]));
+							recursos.setLechugaD(recursos.getLechugaD() - factores.getCantLec());
+							recursos.setLechugaU(recursos.getLechugaU() + factores.getCantLec());
+							wait = factores.getTiempoLec();
+							break;
+					}
+
+					// Cambiar la imagen
+					setIcon(img);
+					setBounds(576, 50, 128, 128);
+
+					Thread.sleep((int)(wait*1000)); // Espera entre agregar un ingrediente y otro
+
+					// Validar que ningún recurso esté en 0
+					if(recursos.getPanD() == 0 || recursos.getSalchichaD() == 0 || recursos.getTocinoD() == 0 || 
+						recursos.getMayonesaD() == 0 || recursos.getTomateD() <= 0 || recursos.getLechugaD() <= 0) {
+						hayRecursos = false;
+					}
+				}
+
+				// Incrementar el totald e hot dogs preparados
+				recursos.setTotalHotDogs(hotDogsPreparados++);
+
 			} catch (Exception e) {
 				System.out.println("Hubo un error con la simulación!");
+				System.out.println(e.getMessage());
 			}
 		} // end for
 
