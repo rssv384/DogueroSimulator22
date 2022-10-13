@@ -8,8 +8,9 @@ public class VistaSimulacion extends JPanel {
 	
 	private JButton btnPause, btnRestart, btnStop;
 	private Animacion imgSimulacion;
-	public String[] urlList1 = new String[] {"images/hot-dog.png", "images/hot-dog2.png", "images/hot-dog3.png" };
-	// public JPanel parent; // Panel parent
+	public String[] urlList1 = new String[] {"images/hot-dog-pan.png", "images/hot-dog-salchicha.png", "images/hot-dog-mayo.png", "images/hot-dog-.png", "images/hot-dog-lechuga.png"};
+	public Factores factores;
+	public Recursos recursos;
 
 	public VistaSimulacion(JPanel parent) {
 		this.parent = parent;
@@ -18,6 +19,8 @@ public class VistaSimulacion extends JPanel {
 
 	// Método para iniciar la animación
 	public void start() {
+		imgSimulacion.factores = factores;
+		imgSimulacion.recursos = recursos;
 		Thread t1 = new Thread(imgSimulacion);
 		t1.start();
 		btnPause.setEnabled(true);
@@ -40,7 +43,7 @@ public class VistaSimulacion extends JPanel {
         cl = (CardLayout) parent.getLayout();
 
 		// Crear elementos
-		imgSimulacion = new Animacion(urlList1, 60);
+		imgSimulacion = new Animacion(urlList1);
 		btnPause = new JButton();
 		btnRestart = new JButton();
 		btnStop = new JButton();
@@ -53,7 +56,7 @@ public class VistaSimulacion extends JPanel {
 		btnPause.setBounds(340, 500, 200, 100);
 		btnRestart.setBounds(540, 500, 200, 100);
 		btnStop.setBounds(740, 500, 200, 100);
-		imgSimulacion.setBounds(619,60,63,77);
+		imgSimulacion.setBounds(500,60,280,220);
 
 		ActionListener listener = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
