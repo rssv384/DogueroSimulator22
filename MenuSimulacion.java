@@ -6,9 +6,21 @@ public class MenuSimulacion extends JPanel {
 	
 	public JPanel parent; // Panel parent
 	private CardLayout cl; // LayoutManager del panel parent
+	public Recursos recursos;
+	public Factores factores;
+
+	JTextField panDisp;
+	JTextField salchDisp;
+	JTextField tocDisp;
+	JTextField tomDisp;
+	JTextField lecDisp;
+	JTextField mayoDisp;
+	JTextField totalOrden;
 	
-	public MenuSimulacion(JPanel parent) {
+	public MenuSimulacion(JPanel parent, Factores factores, Recursos recursos) {
 		this.parent = parent;
+		this.factores = factores;
+		this.recursos = recursos;
 		initValues();
 	} // end constructor
 
@@ -35,13 +47,13 @@ public class MenuSimulacion extends JPanel {
 		JLabel txtTom = new JLabel("Tomate");
 		JLabel txtLec = new JLabel("Lechuga");
 		JLabel txtMayo = new JLabel("Mayonesa");
-		JTextField panDisp = new JTextField();
-		JTextField salchDisp = new JTextField();
-		JTextField tocDisp = new JTextField();
-		JTextField tomDisp = new JTextField();
-		JTextField lecDisp = new JTextField();
-		JTextField mayoDisp = new JTextField();
-		JTextField totalOrden = new JTextField();
+		panDisp = new JTextField();
+		salchDisp = new JTextField();
+		tocDisp = new JTextField();
+		tomDisp = new JTextField();
+		lecDisp = new JTextField();
+		mayoDisp = new JTextField();
+		totalOrden = new JTextField();
 		JList listOrdenes = new JList();
 		JCheckBox checkSalch = new JCheckBox("Salchicha");
 		JCheckBox checkToc = new JCheckBox("Tocino");
@@ -135,7 +147,10 @@ public class MenuSimulacion extends JPanel {
 					// Ir al panel de simulacion (VistaSimulacion)
 					cl.show(parent, "VistaSimulacion");
 					// Iniciar simulación al cambiar de panel
+					guardarRecursos();
 					VistaSimulacion sim = (VistaSimulacion) parent.getComponent(3);
+					sim.factores = factores;
+					sim.recursos = recursos;
 					sim.start();
 				} // end btnSimular
 			} // end actionPerformed
@@ -184,4 +199,17 @@ public class MenuSimulacion extends JPanel {
         setLayout(null);
 	} // end initValues
 	
+	// Método para guardar los recursos disponibles en la clase contenedora
+	public void guardarRecursos() {
+		try {
+			recursos.setPanD(Integer.parseInt(panDisp.getText()));
+			recursos.setSalchichaD(Integer.parseInt(salchDisp.getText()));
+			recursos.setTocinoD(Integer.parseInt(tocDisp.getText()));
+			recursos.setTomateD(Integer.parseInt(tomDisp.getText()));
+			recursos.setLechugaD(Integer.parseInt(lecDisp.getText()));
+			recursos.setMayonesaD(Integer.parseInt(mayoDisp.getText()));
+		} catch(Exception ex) {
+			JOptionPane.showMessageDialog(null, "Uno o más recursos recibieron valores inválidos. Intente nuevamente.");
+		}
+	}
 }
