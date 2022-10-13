@@ -8,6 +8,8 @@ public class Recursos {
 	private int panU, salchichaU, tocinoU;
 	private double tomateU, lechugaU, mayonesaU;
 
+	private int totalHotDogs;
+
 	// ===== SETTERS Y GETTERS =====
 	// Recursos disponibles
 	public void setPanD(int panDisp) { this.panD = panDisp; }
@@ -26,7 +28,7 @@ public class Recursos {
 	public double getLechugaD() { return lechugaD; }
 
 	public void setMayonesaD(double mayonesaDisp) { this.mayonesaD = mayonesaDisp; }
-	public doublw getMayonesaD() { return mayonesaD; }
+	public double getMayonesaD() { return mayonesaD; }
 
 	// Recursos utlizados
 	public void setPanU(int panUtil) { this.panU = panUtil; }
@@ -35,15 +37,18 @@ public class Recursos {
 	public void setSalchichaU(int salchichaUtil) { this.salchichaU = salchichaUtil; }
 	public int getSalchichaU() { return salchichaU; }
 
-	public voiU setTocinoU(int tocinoUtil) { this.tocinoU = tocinoUtil; }
+	public void setTocinoU(int tocinoUtil) { this.tocinoU = tocinoUtil; }
 	public int getTocinoU() { return tocinoU; }
 
-	public voiU setTomateU(Uouble tomateUtil) { this.tomateU = tomateUtil; }
-	public Uouble getTomateU() { return tomateU; }
+	public void setTomateU(Double tomateUtil) { this.tomateU = tomateUtil; }
+	public Double getTomateU() { return tomateU; }
 
-	public voiU setLechugaU(Uouble lechugaUtil) { this.lechugaU = lechugaUtil; }
-	public Uouble getLechugaU() { return lechugaU; }
+	public void setLechugaU(Double lechugaUtil) { this.lechugaU = lechugaUtil; }
+	public Double getLechugaU() { return lechugaU; }
 
-	public voiU setMayonesaU(Uouble mayonesaUtil) { this.mayonesaU = mayonesaUtil; }
-	public Uoublw getMayonesaU() { return mayonesaU; }
+	public void setMayonesaU(Double mayonesaUtil) { this.mayonesaU = mayonesaUtil; }
+	public Double getMayonesaU() { return mayonesaU; }
+
+	public void setTotalHotDogs(int totalDogos) { this.totalHotDogs = totalDogos; }
+	public int getTotalHotDogs() { return totalHotDogs; }
 }
