@@ -1,5 +1,3 @@
-import java.util.HashMap;
-
 public class Factores {
 	// Factores de preparación previa de ingredientes.
 	private double tiempoPicarTom = 40.0, tiempoPicarLec = 127.0, tiempoEnvToc = 13.0,
