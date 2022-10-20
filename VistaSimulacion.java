@@ -8,7 +8,6 @@ public class VistaSimulacion extends JPanel {
 	
 	private JButton btnPause, btnRestart, btnStop;
 	private Animacion imgSimulacion;
-	public String[] urlList1 = new String[] {"images/hot-dog-pan.png", "images/hot-dog-salchicha.png", "images/hot-dog-mayo.png", "images/hot-dog-tomate.png", "images/hot-dog-lechuga.png"};
 	public Factores factores;
 	public Recursos recursos;
 	public JLabel contadorHotDogs;
@@ -46,7 +45,7 @@ public class VistaSimulacion extends JPanel {
         cl = (CardLayout) parent.getLayout();
 
 		// Crear elementos
-		imgSimulacion = new Animacion(urlList1);
+		imgSimulacion = new Animacion();
 		contadorHotDogs = new JLabel("Hot dogs preparados: 0", SwingConstants.CENTER);
 		contadorHotDogs.setFont(fuente);
 		btnPause = new JButton();
