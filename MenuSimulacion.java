@@ -41,12 +41,12 @@ public class MenuSimulacion extends JPanel {
 		JLabel sub3 = new JLabel("Ingredientes");
 		JLabel sub4 = new JLabel("Órdenes");
 		JLabel txtTotal = new JLabel("Total: ");
-		JLabel txtPan = new JLabel("Pan");
-		JLabel txtSalch = new JLabel("Salchicha");
-		JLabel txtToc = new JLabel("Tocino");
-		JLabel txtTom = new JLabel("Tomate");
-		JLabel txtLec = new JLabel("Lechuga");
-		JLabel txtMayo = new JLabel("Mayonesa");
+		JLabel txtPan = new JLabel("Pan (pza.)");
+		JLabel txtSalch = new JLabel("Salchicha (pza.)");
+		JLabel txtToc = new JLabel("Tocino (pza.)");
+		JLabel txtTom = new JLabel("Tomate (g)");
+		JLabel txtLec = new JLabel("Lechuga (g)");
+		JLabel txtMayo = new JLabel("Mayonesa (g)");
 		panDisp = new JTextField();
 		salchDisp = new JTextField();
 		tocDisp = new JTextField();
@@ -144,14 +144,19 @@ public class MenuSimulacion extends JPanel {
 					System.out.println("Orden eliminada!");
 				} // end btnEliminar
 				if (e.getSource() == btnSimular) {
-					// Ir al panel de simulacion (VistaSimulacion)
-					cl.show(parent, "VistaSimulacion");
-					// Iniciar simulación al cambiar de panel
-					guardarRecursos();
-					VistaSimulacion sim = (VistaSimulacion) parent.getComponent(3);
-					sim.factores = factores;
-					sim.recursos = recursos;
-					sim.start();
+					try {
+						// Guardar los recursos disponibles en el contenedor
+						guardarRecursos();
+						// Ir al panel de simulacion (VistaSimulacion)
+						cl.show(parent, "VistaSimulacion");
+						// Iniciar simulación al cambiar de panel
+						VistaSimulacion sim = (VistaSimulacion) parent.getComponent(3);
+						sim.factores = factores;
+						sim.recursos = recursos;
+						sim.start();
+					} catch(Exception ex) {
+						JOptionPane.showMessageDialog(null, "Uno o más recursos recibieron valores inválidos. Intente nuevamente.");
+					}
 				} // end btnSimular
 			} // end actionPerformed
 		};
@@ -200,16 +205,12 @@ public class MenuSimulacion extends JPanel {
 	} // end initValues
 	
 	// Método para guardar los recursos disponibles en la clase contenedora
-	public void guardarRecursos() {
-		try {
-			recursos.setPanD(Integer.parseInt(panDisp.getText()));
-			recursos.setSalchichaD(Integer.parseInt(salchDisp.getText()));
-			recursos.setTocinoD(Integer.parseInt(tocDisp.getText()));
-			recursos.setTomateD(Integer.parseInt(tomDisp.getText()));
-			recursos.setLechugaD(Integer.parseInt(lecDisp.getText()));
-			recursos.setMayonesaD(Integer.parseInt(mayoDisp.getText()));
-		} catch(Exception ex) {
-			JOptionPane.showMessageDialog(null, "Uno o más recursos recibieron valores inválidos. Intente nuevamente.");
-		}
+	public void guardarRecursos() throws Exception {
+		recursos.setPanD(Integer.parseInt(panDisp.getText()));
+		recursos.setSalchichaD(Integer.parseInt(salchDisp.getText()));
+		recursos.setTocinoD(Integer.parseInt(tocDisp.getText()));
+		recursos.setTomateD(Integer.parseInt(tomDisp.getText()));
+		recursos.setLechugaD(Integer.parseInt(lecDisp.getText()));
+		recursos.setMayonesaD(Integer.parseInt(mayoDisp.getText()));
 	}
 }
