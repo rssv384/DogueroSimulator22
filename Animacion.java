@@ -4,14 +4,14 @@ import javax.swing.*;
 public class Animacion extends JLabel implements Runnable {
 
 	boolean pausar, reanudar, stop, hayRecursos;
-	public String[] urlList;
+	private String[] urlList = new String[] {"images/hot-dog-pan.png", "images/hot-dog-salchicha.png", "images/hot-dog-mayo.png", "images/hot-dog-tomate.png", "images/hot-dog-lechuga.png"};
 	public ImageIcon img;
 	private String[] listaIngredientes = new String[] {"pan", "salchicha", "tocino", "mayonesa", "tomate", "lechuga"};
 	public Recursos recursos;
 	public Factores factores;
 
-	public Animacion(String [] urlList) {
-		this.urlList = urlList;
+	public Animacion() {
+
 	} // end constructor
 
 	public void run() {
@@ -24,18 +24,19 @@ public class Animacion extends JLabel implements Runnable {
 		// La simulación correrá mientras se tengan recursos disponibles
 		while (hayRecursos) {
 			try {
-				synchronized (this) {
-					while (pausar) {
-						wait();
-					}
-					if (stop) {
-						break;
-					}
-				} // end sync
 
 				// Iterar la lista de ingredientes y cambiar el icono para representar
 				// que se agregó un nuevo ingrediente
 				for (String ing : listaIngredientes) {
+					synchronized (this) {
+						while (pausar) {
+							wait();
+						}
+						if (stop) {
+							break;
+						}
+					} // end sync
+
 					// Espera correspondiente al tiempo es que tarda en servirse el ingrediente (Factores)
 					double wait = 0;
 
@@ -72,7 +73,7 @@ public class Animacion extends JLabel implements Runnable {
 							recursos.setLechugaU(recursos.getLechugaU() + factores.getCantLec());
 							wait = factores.getTiempoLec();
 							break;
-					}
+					} // end switch
 
 					// Cambiar la imagen
 					setIcon(img);
@@ -81,12 +82,13 @@ public class Animacion extends JLabel implements Runnable {
 					Thread.sleep((int)(wait*1000)); // Espera entre agregar un ingrediente y otro
 					recursos.setTiempoTotal(recursos.getTiempoTotal() + wait); // Incrementar el contador de tiempo de preparación
 
-					// Validar que ningún recurso esté en 0
-					if(recursos.getPanD() == 0 || recursos.getSalchichaD() == 0 || recursos.getTocinoD() == 0 || 
-						recursos.getMayonesaD() == 0 || recursos.getTomateD() <= 0 || recursos.getLechugaD() <= 0) {
+					// Validar que ningún recurso esté en 0 o sea insuficiente
+					if(recursos.getPanD() < factores.getCantPan()  || recursos.getSalchichaD() < factores.getCantSalch() || 
+						recursos.getTocinoD() < factores.getCantToc() || recursos.getMayonesaD() < factores.getCantMayo() || 
+						recursos.getTomateD() < factores.getCantTom() || recursos.getLechugaD() < factores.getCantLec()) {
 						hayRecursos = false;
 					}
-				}
+				} // end for
 
 				// Incrementar el total de hot dogs preparados
 				hotDogsPreparados++;
@@ -97,7 +99,7 @@ public class Animacion extends JLabel implements Runnable {
 				System.out.println("Hubo un error con la simulación!");
 				System.out.println(e.getMessage());
 			}
-		} // end for
+		} // end while
 
 		// Al terminar de ejecutar la animación, cambiar a la vista del reporte
 		vs.verReporte();
