@@ -9,6 +9,7 @@ public class Recursos {
 	private double tomateU, lechugaU, mayonesaU;
 
 	private int totalHotDogs;
+	private double tiempoTotalSegs;
 
 	// ===== SETTERS Y GETTERS =====
 	// Recursos disponibles
@@ -49,6 +50,10 @@ public class Recursos {
 	public void setMayonesaU(Double mayonesaUtil) { this.mayonesaU = mayonesaUtil; }
 	public Double getMayonesaU() { return mayonesaU; }
 
+	// SETTERS Y GETTERS total de hot dogs preparados y de tiempo de preparación
 	public void setTotalHotDogs(int totalDogos) { this.totalHotDogs = totalDogos; }
 	public int getTotalHotDogs() { return totalHotDogs; }
+
+	public void setTiempoTotal(double tiempoT) { this.tiempoTotalSegs = tiempoT; }
+	public double getTiempoTotal() { return tiempoTotalSegs; }
 }
