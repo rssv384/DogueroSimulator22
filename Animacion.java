@@ -16,7 +16,10 @@ public class Animacion extends JLabel implements Runnable {
 
 	public void run() {
 		stop = false; hayRecursos = true;
-		int hotDogsPreparados = 0;
+		int hotDogsPreparados = 0; // Contador de hot dogs
+
+		// Obtener la ventana del reporte, la cual se muestra al terminar la simulación
+		VistaSimulacion vs = (VistaSimulacion) this.getParent();
 
 		// La simulación correrá mientras se tengan recursos disponibles
 		while (hayRecursos) {
@@ -76,6 +79,7 @@ public class Animacion extends JLabel implements Runnable {
 					setBounds(576, 50, 128, 128);
 
 					Thread.sleep((int)(wait*1000)); // Espera entre agregar un ingrediente y otro
+					recursos.setTiempoTotal(recursos.getTiempoTotal() + wait); // Incrementar el contador de tiempo de preparación
 
 					// Validar que ningún recurso esté en 0
 					if(recursos.getPanD() == 0 || recursos.getSalchichaD() == 0 || recursos.getTocinoD() == 0 || 
@@ -84,8 +88,10 @@ public class Animacion extends JLabel implements Runnable {
 					}
 				}
 
-				// Incrementar el totald e hot dogs preparados
-				recursos.setTotalHotDogs(hotDogsPreparados++);
+				// Incrementar el total de hot dogs preparados
+				hotDogsPreparados++;
+				recursos.setTotalHotDogs(hotDogsPreparados);
+				vs.contadorHotDogs.setText("Hot dogs preparados: " + Integer.toString(hotDogsPreparados));
 
 			} catch (Exception e) {
 				System.out.println("Hubo un error con la simulación!");
@@ -94,7 +100,6 @@ public class Animacion extends JLabel implements Runnable {
 		} // end for
 
 		// Al terminar de ejecutar la animación, cambiar a la vista del reporte
-		VistaSimulacion vs = (VistaSimulacion) this.getParent();
 		vs.verReporte();
 
 	} // end run
