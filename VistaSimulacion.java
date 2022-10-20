@@ -8,9 +8,10 @@ public class VistaSimulacion extends JPanel {
 	
 	private JButton btnPause, btnRestart, btnStop;
 	private Animacion imgSimulacion;
-	public String[] urlList1 = new String[] {"images/hot-dog-pan.png", "images/hot-dog-salchicha.png", "images/hot-dog-mayo.png", "images/hot-dog-.png", "images/hot-dog-lechuga.png"};
+	public String[] urlList1 = new String[] {"images/hot-dog-pan.png", "images/hot-dog-salchicha.png", "images/hot-dog-mayo.png", "images/hot-dog-tomate.png", "images/hot-dog-lechuga.png"};
 	public Factores factores;
 	public Recursos recursos;
+	public JLabel contadorHotDogs;
 
 	public VistaSimulacion(JPanel parent) {
 		this.parent = parent;
@@ -32,18 +33,22 @@ public class VistaSimulacion extends JPanel {
 		btnPause.setEnabled(false);
 		btnRestart.setEnabled(false);
 		btnStop.setEnabled(false);
+		VistaReporte reporte = (VistaReporte) parent.getComponent(4);
+		reporte.recursos = recursos;
+		reporte.cargarDatos();
 		cl.show(parent, "VistaReporte");
 	}
 
 	// Método que inicializa los elementos y propiedades de la ventana
 	public void initValues() {
-		Font fuenteTitulo = new Font("Courier New", 1, 52);
-		Font fuenteTexto = new Font("Courier New", 1, 16);
+		Font fuente = new Font("Courier New", 1, 20);
 
         cl = (CardLayout) parent.getLayout();
 
 		// Crear elementos
 		imgSimulacion = new Animacion(urlList1);
+		contadorHotDogs = new JLabel("Hot dogs preparados: 0", SwingConstants.CENTER);
+		contadorHotDogs.setFont(fuente);
 		btnPause = new JButton();
 		btnRestart = new JButton();
 		btnStop = new JButton();
@@ -53,10 +58,11 @@ public class VistaSimulacion extends JPanel {
 		btnStop.setIcon(new ImageIcon("images/stop.png"));
 
 		// Definir propiedades de los elementos
+		imgSimulacion.setBounds(500,60,280,220);
+		contadorHotDogs.setBounds(500,300,280,50);
 		btnPause.setBounds(340, 500, 200, 100);
 		btnRestart.setBounds(540, 500, 200, 100);
 		btnStop.setBounds(740, 500, 200, 100);
-		imgSimulacion.setBounds(500,60,280,220);
 
 		ActionListener listener = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -84,6 +90,7 @@ public class VistaSimulacion extends JPanel {
 
 		// Agregar elementos al panel
 		add(imgSimulacion);
+		add(contadorHotDogs);
 		add(btnPause);
 		add(btnRestart);
 		add(btnStop);
@@ -92,8 +99,6 @@ public class VistaSimulacion extends JPanel {
 		setPreferredSize(new Dimension(1280, 720));
 		setLayout(null);
 		setVisible(false);
-		//Color fondo = new Color(130,130,130);
-		//setBackground(fondo);
 	} // end initValues
 
 }
