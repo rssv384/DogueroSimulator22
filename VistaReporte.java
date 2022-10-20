@@ -5,6 +5,24 @@ import javax.swing.*;
 public class VistaReporte extends JPanel {
 	public JPanel parent; // Panel parent
 	private CardLayout cl; // LayoutManager del panel parent
+	public Recursos recursos;
+
+	JLabel txtCantDogos;
+	JLabel txtTiempo;
+
+	JLabel txtCantPan;
+	JLabel txtCantSalchicha;
+	JLabel txtCantTocino;
+	JLabel txtCantTomate;
+	JLabel txtCantLechuga;
+	JLabel txtCantMayonesa;
+
+	JLabel txtResiduoPan;
+	JLabel txtResiduoSalchicha;
+	JLabel txtResiduoTocino;
+	JLabel txtResiduoTomate;
+	JLabel txtResiduoLechuga;
+	JLabel txtResiduoMayonesa;
 
 	public VistaReporte(JPanel parent) {
 		this.parent = parent;
@@ -19,13 +37,14 @@ public class VistaReporte extends JPanel {
         cl = (CardLayout) parent.getLayout();
 
 		// Crear elementos
-		JLabel txtTitulo = new JLabel("Reporte Simulacion",SwingConstants.CENTER);
+		JLabel txtTitulo = new JLabel("Reporte Simulación",SwingConstants.CENTER);
 		txtTitulo.setFont(fuenteTitulo);
 		JLabel txtTotal = new JLabel("Total: ",SwingConstants.LEFT);
 		txtTotal.setFont(fuenteTexto);
-		JLabel txtCantDogo = new JLabel("n dogos",SwingConstants.CENTER);
-		txtCantDogo.setFont(fuenteTexto);
-		JLabel txtTiempo = new JLabel("hh:mm:ss",SwingConstants.CENTER);
+		txtCantDogos = new JLabel("",SwingConstants.CENTER);
+		txtCantDogos.setFont(fuenteTexto);
+		txtTiempo = new JLabel("",SwingConstants.CENTER);
+		txtTiempo.setFont(fuenteTexto);
 		JLabel txtIngredientes = new JLabel("Ingredientes",SwingConstants.LEFT);
 		txtIngredientes.setFont(fuenteTexto);
 		JLabel txtCantidad = new JLabel("Cantidad",SwingConstants.CENTER);
@@ -38,31 +57,32 @@ public class VistaReporte extends JPanel {
 		txtSalchicha.setFont(fuenteTexto);
 		JLabel txtTocino = new JLabel("Tocino (pza.)",SwingConstants.LEFT);
 		txtTocino.setFont(fuenteTexto);
-		JLabel txtTomate = new JLabel("Tomate",SwingConstants.LEFT);	
+		JLabel txtTomate = new JLabel("Tomate (g)",SwingConstants.LEFT);	
 		txtTomate.setFont(fuenteTexto);
-		JLabel txtLechuga = new JLabel("Lechuga",SwingConstants.LEFT);
+		JLabel txtLechuga = new JLabel("Lechuga (g)",SwingConstants.LEFT);
 		txtLechuga.setFont(fuenteTexto);
-		JLabel txtMayonesa = new JLabel("Mayonesa",SwingConstants.LEFT);	
+		JLabel txtMayonesa = new JLabel("Mayonesa (g)",SwingConstants.LEFT);	
 		txtMayonesa.setFont(fuenteTexto);
 
-		JLabel txtCantPan = new JLabel();
-		JLabel txtCantSalchicha = new JLabel();
-		JLabel txtCantTocino = new JLabel();
-		JLabel txtCantTomate = new JLabel();
-		JLabel txtCantLechuga = new JLabel();
-		JLabel txtCantMayonesa = new JLabel();
-		JLabel txtResiduoPan = new JLabel();
-		JLabel txtResiduoSalchicha = new JLabel();
-		JLabel txtResiduoTocino = new JLabel();
-		JLabel txtResiduoTomate = new JLabel();
-		JLabel txtResiduoLechuga = new JLabel();
-		JLabel txtResiduoMayonesa = new JLabel();
+		txtCantPan = new JLabel();
+		txtCantSalchicha = new JLabel();
+		txtCantTocino = new JLabel();
+		txtCantTomate = new JLabel();
+		txtCantLechuga = new JLabel();
+		txtCantMayonesa = new JLabel();
+
+		txtResiduoPan = new JLabel();
+		txtResiduoSalchicha = new JLabel();
+		txtResiduoTocino = new JLabel();
+		txtResiduoTomate = new JLabel();
+		txtResiduoLechuga = new JLabel();
+		txtResiduoMayonesa = new JLabel();
 
 		JButton btnIrMenuP = new JButton("Ir al Menu Principal");
 
 		// Definir propiedades de los elementos
 		txtTotal.setBounds(300,115,200,25);
-		txtCantDogo.setBounds(535,115,200,25);
+		txtCantDogos.setBounds(535,115,200,25);
 		txtTiempo.setBounds(800,115,200,25);
 
 
@@ -129,7 +149,7 @@ public class VistaReporte extends JPanel {
 		add(txtResiduoMayonesa);
 		add(btnIrMenuP);
 		add(txtTotal);
-		add(txtCantDogo);
+		add(txtCantDogos);
 		add(txtTiempo);
 
 		
@@ -138,4 +158,27 @@ public class VistaReporte extends JPanel {
         setLayout(null);
 	} // end initValues
 	
+
+	public void cargarDatos() {
+		int horas = (int) recursos.getTiempoTotal() / 3600;
+		int mins = (int) (recursos.getTiempoTotal() % 3600) / 60;
+		double segs = recursos.getTiempoTotal() % 60;
+
+		txtCantDogos.setText(Integer.toString(recursos.getTotalHotDogs()) + " hot dog(s)");
+		txtTiempo.setText(horas + " : " + mins + " : " + segs);
+
+		txtCantPan.setText(Integer.toString(recursos.getPanU()));
+		txtCantSalchicha.setText(Integer.toString(recursos.getSalchichaU()));
+		txtCantTocino.setText(Integer.toString(recursos.getTocinoU()));
+		txtCantTomate.setText(Double.toString(recursos.getTomateU()));
+		txtCantLechuga.setText(Double.toString(recursos.getLechugaU()));
+		txtCantMayonesa.setText(Double.toString(recursos.getMayonesaU()));
+
+		txtResiduoPan.setText(Integer.toString(recursos.getPanD()));
+		txtResiduoSalchicha.setText(Integer.toString(recursos.getSalchichaD()));
+		txtResiduoTocino.setText(Integer.toString(recursos.getTocinoD()));
+		txtResiduoTomate.setText(Double.toString(recursos.getTomateD()));
+		txtResiduoLechuga.setText(Double.toString(recursos.getLechugaD()));
+		txtResiduoMayonesa.setText(Double.toString(recursos.getMayonesaD()));
+	}
 }
