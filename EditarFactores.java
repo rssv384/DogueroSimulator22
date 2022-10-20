@@ -50,11 +50,11 @@ public class EditarFactores extends JPanel {
 		txtSalchicha.setFont(fuenteTexto);
 		JLabel txtTocino = new JLabel("Tocino (pza.)",SwingConstants.LEFT);
 		txtTocino.setFont(fuenteTexto);
-		JLabel txtTomate = new JLabel("Tomate",SwingConstants.LEFT);	
+		JLabel txtTomate = new JLabel("Tomate (g)",SwingConstants.LEFT);	
 		txtTomate.setFont(fuenteTexto);
-		JLabel txtLechuga = new JLabel("Lechuga",SwingConstants.LEFT);
+		JLabel txtLechuga = new JLabel("Lechuga (g)",SwingConstants.LEFT);
 		txtLechuga.setFont(fuenteTexto);
-		JLabel txtMayonesa = new JLabel("Mayonesa",SwingConstants.LEFT);	
+		JLabel txtMayonesa = new JLabel("Mayonesa (g)",SwingConstants.LEFT);	
 		txtMayonesa.setFont(fuenteTexto);
 
 		tfCantPan = new JTextField();
@@ -113,7 +113,11 @@ public class EditarFactores extends JPanel {
 					cl.show(parent, "MenuPrincipal");
 				} // end btnRegresar
 				if (e.getSource() == btnGuardar) {
-					guardarCambios();
+					try {
+						guardarCambios();
+					} catch(Exception ex) {
+						JOptionPane.showMessageDialog(null, "Error al guardar los cambios. Intente nuevamente.");
+					}
 					//cl.show(parent, "MenuPrincipal");
 				} // end btnGuardar
 			} // end actionPerformed
@@ -177,8 +181,19 @@ public class EditarFactores extends JPanel {
 	}
 
 
-	private void guardarCambios() {
-		try {
+	private void guardarCambios() throws Exception {
+		// Si uno o más campos recibe valores <= 0
+		if(Integer.parseInt(tfCantSalchicha.getText()) <= 0 || Integer.parseInt(tfCantTocino.getText()) <= 0 ||
+			Double.parseDouble(tfCantTomate.getText()) <= 0.0 || Double.parseDouble(tfCantLechuga.getText()) <= 0.0 ||
+			Double.parseDouble(tfCantMayonesa.getText()) <= 0.0 || Double.parseDouble(tfTiempoPan.getText()) <= 0.0 ||
+			Double.parseDouble(tfTiempoSalchicha.getText()) <= 0.0 || Double.parseDouble(tfTiempoTomate.getText()) <= 0.0 ||
+			Double.parseDouble(tfTiempoLechuga.getText()) <= 0.0 || Double.parseDouble(tfTiempoMayonesa.getText()) <= 0.0) {
+			
+			// Mostrar mensaje de error
+			JOptionPane.showMessageDialog(null, "Uno o más campos recibieron valores inválidos. Intente nuevamente.");
+
+		} else {
+			// Guardar valores en la clase contenedora y mostrar mensaje de éxito	
 			factores.setCantSalch(Integer.parseInt(tfCantSalchicha.getText()));
 			factores.setCantToc(Integer.parseInt(tfCantTocino.getText()));
 			factores.setCantTom(Double.parseDouble(tfCantTomate.getText()));
@@ -192,11 +207,8 @@ public class EditarFactores extends JPanel {
 			factores.setTiempoMayo(Double.parseDouble(tfTiempoMayonesa.getText()));
 
 			JOptionPane.showMessageDialog(null, "¡Se han guardado los cambios!");
-
-			cargarFactores();
 			
-		} catch(Exception ex) {
-			JOptionPane.showMessageDialog(null, "Uno o más campos recibieron valores inválidos. Intente nuevamente.");
+			cargarFactores();
 		}
 	}
 
