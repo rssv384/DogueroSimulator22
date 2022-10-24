@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -54,7 +55,7 @@ public class MenuSimulacion extends JPanel {
 		lecDisp = new JTextField();
 		mayoDisp = new JTextField();
 		totalOrden = new JTextField();
-		JList listOrdenes = new JList();
+		// JList listOrdenes = new JList();
 		JCheckBox checkSalch = new JCheckBox("Salchicha");
 		JCheckBox checkToc = new JCheckBox("Tocino");
 		JCheckBox checkTom = new JCheckBox("Tomate");
@@ -65,6 +66,13 @@ public class MenuSimulacion extends JPanel {
 		JButton btnEliminar = new JButton("Eliminar");
 		JButton btnRegresar = new JButton();
 		btnRegresar.setIcon(new ImageIcon("images/regresar.png"));
+		
+		
+		// Crear lista y modelo de lista:
+		ArrayList<Orden> ordenes = new ArrayList<Orden>(); // Aqui guardo los objectos Orden que contienen la info.
+		DefaultListModel<String> listOrdenesModel = new DefaultListModel<>(); // listOrdenesModel
+        JList<String> listOrdenes = new JList<>(listOrdenesModel);
+		
 
 		txtTituloUno.setFont(fuenteSubTitulo);
 		txtTituloDos.setFont(fuenteSubTitulo);
@@ -120,7 +128,7 @@ public class MenuSimulacion extends JPanel {
 		checkLec.setBounds(700,220,150,30);
 		checkMayo.setBounds(700,250,150,30);
 		sub4.setBounds(965,60,200,100);
-		listOrdenes.setBounds(900,130,200,180);
+		listOrdenes.setBounds(900,130,300,230);
 
 		txtTotal.setBounds(700,300,200,100);
 		totalOrden.setBounds(770,340,100,20);
@@ -137,10 +145,51 @@ public class MenuSimulacion extends JPanel {
 				} // end btnRegresar
 				if (e.getSource() == btnAgregar) {
 					// Agregar orden
+					
+					// Obtener datos de la orden y agregar orden a la lista:
+					
+					if (totalOrden.getText().isEmpty()) {
+						System.out.println("El total esta vacio o es cero.");
+						return;
+					}
+					
+					int cantidad = Integer.parseInt(totalOrden.getText());
+					
+					if (cantidad <= 0) {
+						System.out.println("El total no puede ser menor o igual a cero.");
+						return;
+					}
+						
+					boolean salchicha = checkSalch.isSelected();
+					boolean tocino = checkToc.isSelected();
+					boolean tomate = checkTom.isSelected();
+					boolean lechuga = checkLec.isSelected();
+					boolean mayonesa = checkMayo.isSelected();
+
+					Orden o = new Orden(salchicha, tocino, tomate, lechuga, mayonesa, cantidad); // Crear el objeto Orden con la info.
+					ordenes.add(o); // Agregar orden a la lista.
+					listOrdenesModel.addElement(o.toString()); // Agregar a la lista que esta en la interfaz.
+					System.out.println(ordenes);
+
+					//
+					
 					System.out.println("Orden agregada!");
 				} // end btnAgregar
 				if (e.getSource() == btnEliminar) {
 					// Eliminar orden
+					
+					// Encontrar el index del item seleccionado.
+					
+					int index = listOrdenes.getSelectedIndex();
+					if (index == -1)
+						return;
+					
+					ordenes.remove(index);
+					listOrdenesModel.removeElementAt(index);
+					System.out.println(ordenes);
+					
+					//
+					
 					System.out.println("Orden eliminada!");
 				} // end btnEliminar
 				if (e.getSource() == btnSimular) {
