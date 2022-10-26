@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -10,7 +11,8 @@ public class VistaSimulacion extends JPanel {
 	private Animacion imgSimulacion;
 	public Factores factores;
 	public Recursos recursos;
-	public JLabel contadorHotDogs;
+	public ArrayList<Orden> ordenes;
+	public JLabel contadorHotDogs, contadorOrdenes;
 
 	public VistaSimulacion(JPanel parent) {
 		this.parent = parent;
@@ -21,6 +23,7 @@ public class VistaSimulacion extends JPanel {
 	public void start() {
 		imgSimulacion.factores = factores;
 		imgSimulacion.recursos = recursos;
+		imgSimulacion.ordenes = new ArrayList<Orden>(ordenes);
 		Thread t1 = new Thread(imgSimulacion);
 		t1.start();
 		btnPause.setEnabled(true);
@@ -45,9 +48,15 @@ public class VistaSimulacion extends JPanel {
         cl = (CardLayout) parent.getLayout();
 
 		// Crear elementos
+		//ordenes = new ArrayList<Orden>();
 		imgSimulacion = new Animacion();
+		imgSimulacion.setHorizontalTextPosition(JLabel.CENTER);
+		imgSimulacion.setVerticalTextPosition(JLabel.BOTTOM);
+		imgSimulacion.setFont(fuente);
 		contadorHotDogs = new JLabel("Hot dogs preparados: 0", SwingConstants.CENTER);
 		contadorHotDogs.setFont(fuente);
+		contadorOrdenes = new JLabel("Órdenes restantes: ", SwingConstants.CENTER);
+		contadorOrdenes.setFont(fuente);
 		btnPause = new JButton();
 		btnRestart = new JButton();
 		btnStop = new JButton();
@@ -57,8 +66,9 @@ public class VistaSimulacion extends JPanel {
 		btnStop.setIcon(new ImageIcon("images/stop.png"));
 
 		// Definir propiedades de los elementos
-		imgSimulacion.setBounds(500,60,280,220);
-		contadorHotDogs.setBounds(500,300,280,50);
+		imgSimulacion.setBounds(390,50,500,400);
+		contadorHotDogs.setBounds(500,450,280,25);
+		contadorOrdenes.setBounds(500,475,280,25);
 		btnPause.setBounds(340, 500, 200, 100);
 		btnRestart.setBounds(540, 500, 200, 100);
 		btnStop.setBounds(740, 500, 200, 100);
@@ -77,6 +87,8 @@ public class VistaSimulacion extends JPanel {
 				} // end btnRestart
 				if (e.getSource() == btnStop) {
 					imgSimulacion.stopHilo();
+					// Mostrar mensaje de que se detuvo la simulación
+					JOptionPane.showMessageDialog(null, "La simulación se detuvo. A continuación se muestra el reporte con los datos generados hasta el momento de ser detenida.");
 					verReporte();
 				} // end btnStop
 			} // end actionPerformed
@@ -90,6 +102,7 @@ public class VistaSimulacion extends JPanel {
 		// Agregar elementos al panel
 		add(imgSimulacion);
 		add(contadorHotDogs);
+		add(contadorOrdenes);
 		add(btnPause);
 		add(btnRestart);
 		add(btnStop);
