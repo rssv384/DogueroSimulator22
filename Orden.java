@@ -17,14 +17,14 @@ public class Orden {
 	
 	@Override
     public String toString() {
-        String orden = "";
+        String orden = "Pan";
         
-        if (salchicha) orden += "Salc ";
-        if (tocino) orden += "Toc ";
-        if (tomate) orden += "Tom ";
-        if (lechuga) orden += "Lec ";
-        if (mayonesa) orden += "May ";
-        orden += "x " + cantidad;
+        if (salchicha) orden += " Salc";
+        if (tocino) orden += " Toc";
+        if (tomate) orden += " Tom";
+        if (lechuga) orden += " Lec";
+        if (mayonesa) orden += " May";
+        orden += " x " + cantidad;
         
         return orden;
     }
