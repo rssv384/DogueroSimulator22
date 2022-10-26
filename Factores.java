@@ -1,7 +1,11 @@
-public class Factores {
+	public class Factores {
 	// Factores de preparación previa de ingredientes.
-	private double tiempoPicarTom = 40.0, tiempoPicarLec = 127.0, tiempoEnvToc = 13.0,
-					tiempoCalSar = 120.0, tiempoCalPan = 60.0, tiempoFreir = 70.0;
+	private double tiempoPicarTom = 48.0; // 1 tomate o 170 g
+	private double tiempoPicarLec = 127.0; // 1/4 de lechuga o 140 g
+	private double tiempoEnvToc = 13.0; // 1 tira de tocino por salchicha
+	private double tiempoCalSar = 120.0;
+	private double tiempoCalPan = 60.0; // 1 pan
+	private double tiempoFreir = 70.0; // 1 salchicha (con o sin tocino)
 
 	// Cantidad de cada ingrediente servida en 1 hot dog
 	private int cantPan = 1, cantSalch = 1, cantToc = 1; // Piezas del ingrediente
@@ -11,21 +15,19 @@ public class Factores {
 	private double tiempoPan = 4.0, tiempoSalch = 4.0, tiempoTom = 4.0, tiempoLec = 4.0, tiempoMayo = 4.0;
 
 	// GETTERS Y SETTERS
-	public void setTiempoPicarTom(double tPicarTom) { this.tiempoPicarTom = tPicarTom; }
+
+	// Tiempos preparación previa
 	public double getTiempoPicarTom() { return tiempoPicarTom; }
 
-	public void setTiempoPicarLec(double tPicarLec) { this.tiempoPicarLec = tPicarLec; }
 	public double getTiempoPicarLec() { return tiempoPicarLec; }
 
-	public void setTiempoEnvToc(double tEnvToc) { this.tiempoEnvToc = tEnvToc; }
 	public double getTiempoEnvToc() { return tiempoEnvToc; }
 
-	public void setTiempoCalSar(double tCalSar) { this.tiempoCalSar = tCalSar; }
 	public double getTiempoCalSar() { return tiempoCalSar; }
 
-	public void setTiempoCalPan(double tCalPan) { this.tiempoCalPan = tCalPan; }
 	public double getTiempoCalPan() { return tiempoCalPan; }
 
+	// Cantidades al servir
 	public void setCantPan(int cPan) { this.cantPan = cPan; }
 	public int getCantPan() { return cantPan; }
 
@@ -44,6 +46,7 @@ public class Factores {
 	public void setCantMayo(double cMayo) { this.cantMayo = cMayo; }
 	public double getCantMayo() { return cantMayo; }
 
+	// Tiempos para servir
 	public void setTiempoPan(double tPan) { this.tiempoPan = tPan; }
 	public double getTiempoPan() { return tiempoPan; }
 
