@@ -22,7 +22,7 @@ public class DogueroSimulator extends JFrame {
 		EditarFactores editarFactores = new EditarFactores(mainPanel, factores);
 		MenuSimulacion menuSimulacion = new MenuSimulacion(mainPanel, factores, recursos);
 		VistaSimulacion vistaSimulacion = new VistaSimulacion(mainPanel);
-		VistaReporte vistaReporte = new VistaReporte(mainPanel);
+		VistaReporte vistaReporte = new VistaReporte(mainPanel, factores);
 
 		// Agregar paneles al panel principal
 		mainPanel.add(menuPrincipal, "MenuPrincipal");
