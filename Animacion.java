@@ -119,8 +119,7 @@ public class Animacion extends JLabel implements Runnable {
 				vs.contadorOrdenes.setText("Órdenes restantes: " + ordenes.size()); // Disminuir el contador de ordenes
 
 			} catch (Exception e) {
-				System.out.println("Hubo un error con la simulación!");
-				System.out.println(e.getMessage());
+				JOptionPane.showMessageDialog(null,"Hubo un error con la simulación!");
 			}
 		} // end while
 
@@ -134,6 +133,7 @@ public class Animacion extends JLabel implements Runnable {
 		}
 
 		// Al terminar de ejecutar la animación, cambiar a la vista del reporte
+		vs.contadorHotDogs.setText("Hot dogs preparados: 0"); // Reiniciar contador
 		vs.verReporte();
 
 	} // end run
