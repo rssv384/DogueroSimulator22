@@ -167,8 +167,15 @@ public class MenuSimulacion extends JPanel {
 					Orden o = new Orden(salchicha, tocino, tomate, lechuga, mayonesa, cantidad); // Crear el objeto Orden con la info.
 					ordenes.add(o); // Agregar orden a la lista.
 					listOrdenesModel.addElement(o.toString()); // Agregar a la lista que esta en la interfaz.
-					JOptionPane.showMessageDialog(null, "¡Órden agregada!");
-					totalOrden.setText("");
+					JOptionPane.showMessageDialog(null, "¡Órden agregada!"); // Mostrar mensaje
+					totalOrden.setText(""); // Limpiar campo de total de la orden
+
+					// Deseleccionar las checkboxes
+					checkSalch.setSelected(false);
+					checkToc.setSelected(false);
+					checkTom.setSelected(false);
+					checkLec.setSelected(false);
+					checkMayo.setSelected(false);
 
 				} // end btnAgregar
 				if (e.getSource() == btnEliminar) {
