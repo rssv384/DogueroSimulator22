@@ -146,6 +146,7 @@ public class VistaReporte extends JPanel {
 		ActionListener listener = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (e.getSource() == btnIrMenuP) {
+					limpiarRecursosUsados();
 					cl.show(parent, "MenuPrincipal");
 				} // end btnIrMenuP
 			} // end actionPerformed
@@ -240,5 +241,15 @@ public class VistaReporte extends JPanel {
 		double segs = segundos % 60;
 
 		return (horas + " : " + mins + " : " + segs);
+	}
+
+	private void limpiarRecursosUsados() {
+		recursos.setPanU(0);
+		recursos.setSalchichaU(0);
+		recursos.setTocinoU(0);
+		recursos.setTomateU(0.0);
+		recursos.setLechugaU(0.0);
+		recursos.setMayonesaU(0.0);
+		recursos.setTiempoTotal(0.0);
 	}
 }
